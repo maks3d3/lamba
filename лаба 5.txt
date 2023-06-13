@@ -1,0 +1,9 @@
+
+class FirstException(BaseException): 
+pass 
+
+class SecondException(BaseException): 
+pass 
+
+class ThirdException(BaseException): 
+pass 

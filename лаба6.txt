@@ -1,0 +1,26 @@
+
+import time 
+
+def measure(func): 
+def wrapper(*args): 
+start_time = time.time() 
+result = func(*args) 
+end_time = time.time() 
+print(f"Function {func.__name__} was executed in {end_time-start_time:.2f} seconds") 
+print(f"Sides: {args}") 
+print(f"Result: {result}") 
+return result 
+return wrapper 
+
+@measure 
+def calculate_hypotenuse(a, b): 
+c = (a**2 + b**2)**0.5 
+return c 
+
+if __name__ == '__main__': 
+a = float(input("Enter the length of the first cathetus: ")) 
+b = float(input("Enter the length of the second cathetus: ")) 
+
+hypotenuse = calculate_hypotenuse(a, b) 
+
+print(f"The length of the hypotenuse is {hypotenuse:.2f}") 

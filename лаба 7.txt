@@ -1,0 +1,68 @@
+class CustomException1(BaseException): 
+pass 
+
+class CustomException2(BaseException): 
+pass 
+
+class CustomException3(BaseException): 
+pass 
+
+python 
+class FileManager: 
+def __init__(self, file_path): 
+self.file_path = file_path 
+
+def read_file(self): 
+try: 
+with open(self.file_path, 'r') as f: 
+return f.read () 
+except FileNotFoundError: 
+raise CustomException1("File not found") 
+except PermissionError: 
+raise CustomException2("Permission denied") 
+
+def write_file(self, data): 
+try: 
+with open(self.file_path, 'w') as f: 
+f.write(data) 
+except FileNotFoundError: 
+raise CustomException1("File not found") 
+except PermissionError: 
+raise CustomException2("Permission denied") 
+
+def delete_file(self): 
+try: 
+os.remove(self.file_path) 
+except FileNotFoundError: 
+raise CustomException1("File not found") 
+except PermissionError: 
+raise CustomException2("Permission denied") 
+
+python 
+class FileManagerHandler: 
+def __init__(self, file_manager): 
+self.file_manager = file_manager 
+
+def read_file(self): 
+try: 
+return self.file_ manager.read _file() 
+except CustomException1 as e: 
+print(f"Error: {e}") 
+except CustomException2 as e: 
+print(f"Error: {e}") 
+
+def write_file(self, data): 
+try: 
+self.file_manager.write_file(data) 
+except CustomException1 as e: 
+print(f"Error: {e}") 
+except CustomException2 as e: 
+print(f"Error: {e}") 
+
+def delete_file(self): 
+try: 
+self.file_manager.delete_file() 
+except CustomException1 as e: 
+print(f"Error: {e}") 
+except CustomException2 as e: 
+print(f"Error: {e}") 
